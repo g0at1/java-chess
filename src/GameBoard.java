@@ -1,3 +1,5 @@
+import java.io.*;
+
 public
     class GameBoard {
 
@@ -8,35 +10,35 @@ public
         board = new ChessFigure[8][8];
         initBoard();
         printBoard();
-
     }
 
     private void initBoard() {
-        board[0][0] = new Rook("black");
-        board[0][1] = new Knight("black");
-        board[0][2] = new Bishop("black");
-        board[0][3] = new Queen("black");
-        board[0][4] = new King("black");
-        board[0][5] = new Bishop("black");
-        board[0][6] = new Knight("black");
-        board[0][7] = new Bishop("black");
+        board[0][0] = new Rook("black", 0, 0);
+        board[0][1] = new Knight("black", 0, 1);
+        board[0][2] = new Bishop("black",0, 2);
+        board[0][3] = new Queen("black",0, 3);
+        board[0][4] = new King("black", 0, 4);
+        board[0][5] = new Bishop("black", 0, 5);
+        board[0][6] = new Knight("black", 0, 6);
+        board[0][7] = new Rook("black", 0, 7);
 
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Pawn("black");
+            board[1][i] = new Pawn("black", 1, i);
+            board[6][i] = new Pawn("white", 6, i);
         }
 
-        for (int i = 0; i < 8; i++) {
-            board[6][i] = new Pawn("white");
-        }
+//        for (int i = 0; i < 8; i++) {
+//            board[6][i] = new Pawn("white", 6, i);
+//        }
 
-        board[7][0] = new Rook("white");
-        board[7][1] = new Knight("white");
-        board[7][2] = new Bishop("white");
-        board[7][3] = new Queen("white");
-        board[7][4] = new King("white");
-        board[7][5] = new Bishop("white");
-        board[7][6] = new King("white");
-        board[7][7] = new Bishop("white");
+        board[7][0] = new Rook("white", 7, 0);
+        board[7][1] = new Knight("white", 7, 1);
+        board[7][2] = new Bishop("white", 7, 2);
+        board[7][3] = new Queen("white", 7, 3);
+        board[7][4] = new King("white", 7, 4);
+        board[7][5] = new Bishop("white", 7, 5);
+        board[7][6] = new Knight("white", 7, 6);
+        board[7][7] = new Rook("white", 7, 7);
     }
 
     public void printBoard() {
@@ -46,11 +48,11 @@ public
             for (int j = 0; j < board[i].length; j++) {
                 ChessFigure piece = board[i][j];
                 if (piece == null) {
-                    System.out.print(" \u25A1 "); // puste pole
+                    System.out.print(" - "); // puste pole
                 }
                 else {
                     String symbol = piece.getSymbol();
-                    if (piece.getColor().equals("black")) {
+                    if (piece.getColor().equals("white")) {
                         symbol = switch (symbol) {
                             case "K" -> "\u265A"; // król
                             case "Q" -> "\u265B"; // hetman
@@ -82,10 +84,6 @@ public
         return board[x][y];
     }
 
-    public void setPiece(int x, int y, ChessFigure figure) {
-        board[x][y] = figure;
-    }
-
     public void removeFigure(int x, int y) {
         board[x][y] = null;
     }
@@ -93,6 +91,5 @@ public
     public static ChessFigure[][] getBoard() {
         return board;
     }
-
 
 }
