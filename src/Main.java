@@ -4,18 +4,46 @@ public
     class Main {
 
     public static void main(String[] args) {
-
         GameBoard board = new GameBoard();
         Scanner scanner = new Scanner(System.in);
         boolean whiteTurn = true;
         boolean gameOver = false;
+        boolean isDrawOffer = false;
+        boolean blackDraw = false;
+        boolean whiteDraw = false;
 
         while (!gameOver) {
             String turnColor = whiteTurn ? "white" : "black";
             System.out.println(turnColor + " turn");
 
-            System.out.print("Enter move (a2 a3 format): ");
+            System.out.print("Enter move (a2 a3 format or type draw): ");
             String input = scanner.nextLine();
+
+            if (input.equals("draw")) {
+                if (turnColor.equals("white")) {
+                    whiteDraw = true;
+                }
+                else {
+                    blackDraw = true;
+                }
+
+                if (whiteDraw && blackDraw) {
+                    System.out.println("Game ended in a draw!");
+                    gameOver = true;
+                }
+                else {
+                    System.out.println(turnColor + " offered a draw.");
+                    whiteTurn = !whiteTurn;
+                    isDrawOffer = true;
+                }
+                continue;
+            }
+            if (isDrawOffer) {
+                System.out.println("Draw offer declined.");
+                isDrawOffer = false;
+
+            }
+
             String[] moves = input.split(" ");
             int x1 = 8 - (moves[0].charAt(1) - '0');
             System.out.println(x1);
@@ -27,13 +55,6 @@ public
 
             ChessFigure figure = board.getFigure(x1, y1);
             String oppositeColor = figure.getColor().equals("white") ? "black" : "white";
-
-            if (figure == null) {
-                board.printBoard();
-                System.out.println("No figure at this position. Try again.");
-                continue;
-            }
-
 
             if (!figure.getColor().equals(turnColor)) {
                 board.printBoard();
@@ -61,13 +82,8 @@ public
                 System.out.println("Invalid move. Try again.");
                 continue;
             }
-//            board.setPiece(x2, y2, figure);
-//            board.removeFigure(x1, y1);
 
             whiteTurn = !whiteTurn;
-
-
-//            board.printBoard();
         }
     }
 }

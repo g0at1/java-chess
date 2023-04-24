@@ -1,5 +1,3 @@
-import java.io.*;
-
 public
     class GameBoard {
 
@@ -22,14 +20,10 @@ public
         board[0][6] = new Knight("black", 0, 6);
         board[0][7] = new Rook("black", 0, 7);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < board.length; i++) {
             board[1][i] = new Pawn("black", 1, i);
             board[6][i] = new Pawn("white", 6, i);
         }
-
-//        for (int i = 0; i < 8; i++) {
-//            board[6][i] = new Pawn("white", 6, i);
-//        }
 
         board[7][0] = new Rook("white", 7, 0);
         board[7][1] = new Knight("white", 7, 1);
@@ -46,30 +40,30 @@ public
         for (int i = 0; i < board.length; i++) {
             System.out.print(8 - i + " ");
             for (int j = 0; j < board[i].length; j++) {
-                ChessFigure piece = board[i][j];
-                if (piece == null) {
-                    System.out.print(" - "); // puste pole
+                ChessFigure figure = board[i][j];
+                if (figure == null) {
+                    System.out.print(" - ");
                 }
                 else {
-                    String symbol = piece.getSymbol();
-                    if (piece.getColor().equals("white")) {
+                    String symbol = figure.getSymbol();
+                    if (figure.getColor().equals("white")) {
                         symbol = switch (symbol) {
-                            case "K" -> "\u265A"; // król
-                            case "Q" -> "\u265B"; // hetman
-                            case "R" -> "\u265C"; // wieża
-                            case "B" -> "\u265D"; // goniec
-                            case "KN" -> "\u265E"; // skoczek
-                            default -> "\u265F"; // pionek
+                            case "R" -> "\u265C"; // WIEZA
+                            case "KN" -> "\u265E"; // SKOCZEK
+                            case "B" -> "\u265D"; // GONIEC
+                            case "Q" -> "\u265B"; // HETMAN
+                            case "K" -> "\u265A"; // KROL
+                            default -> "\u265F"; // PIONEK
                         };
                     }
                     else {
                         symbol = switch (symbol) {
-                            case "K" -> "\u2654"; // król
-                            case "Q" -> "\u2655"; // hetman
-                            case "R" -> "\u2656"; // wieża
-                            case "B" -> "\u2657"; // goniec
-                            case "KN" -> "\u2658"; // skoczek
-                            default -> "\u2659"; // pionek
+                            case "R" -> "\u2656"; // WIEZA
+                            case "KN" -> "\u2658"; // SKOCZEK
+                            case "B" -> "\u2657"; // GONIEC
+                            case "Q" -> "\u2655"; // HETMAN
+                            case "K" -> "\u2654"; // KROL
+                            default -> "\u2659"; // PIONEK
                         };
                     }
                     System.out.print(" " + symbol + " ");

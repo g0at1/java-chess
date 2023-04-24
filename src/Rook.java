@@ -10,49 +10,33 @@ public
 
     @Override
     public boolean isMoveValid(int x1, int y1, int x2, int y2) {
-//        if (x1 == x2) {
-//            int minColumn = Math.min(y1, y2);
-//            int maxColumn = Math.max(y1, y2);
-//            for (int i = minColumn + 1; i < maxColumn; i++) {
-//                if (!board[x1][i].equals(" - ")) {
-//                    return false;
-//                }
-//            }
-//            return true;
-//        } else if (y1 == y2) {
-//            int minRow = Math.min(x1, x2);
-//            int maxRow = Math.max(x1, x2);
-//            for (int i = minRow + 1; i < maxRow; i++) {
-//                if (!board[i][y1].equals(" - ")) {
-//                    return false;
-//                }
-//            }
-//            return true;
-//        }
-//        return false;
+        if (x1 == x2 && y1 == y2) {
+            return false;
+        }
 
-        if (x1 == x2) {
-            return true;
+        if (!(x1 == x2 || y1 == y2)) {
+            return false;
         }
-        else if (y1 == y2) {
-            return true;
+
+        //sprawdzenie czy po drodze nie ma innych figur
+        int dx = 0;
+        int dy = 0;
+        if (x1 != x2) {
+            dx = Integer.compare(x2, x1);
         }
-        int xDir = x1 == x2 ? 0 : (x2 - x1) / Math.abs(x2 - x1);
-        int yDir = y1 == y2 ? 0 : (y2 - y1) / Math.abs(y2 - y1);
-        int x = x1 + xDir;
-        int y = y1 + yDir;
-        while (x != x2 || y != y2) {
-            if (board[x][y] != null) {
-                // There is a piece in the way
+        if (y1 != y2) {
+            dy = Integer.compare(y2, y1);
+        }
+        int currX = x1 + dx;
+        int currY = y1 + dy;
+        while (currX != x2 || currY != y2) {
+            if (board[currX][currY] != null) {
                 return false;
             }
-            x += xDir;
-            y += yDir;
+            currX += dx;
+            currY += dy;
         }
-
-        return false;
-
-
+        return true;
     }
 
     @Override
