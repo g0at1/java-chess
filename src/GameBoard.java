@@ -1,8 +1,6 @@
-public
-    class GameBoard {
+public class GameBoard {
 
     private static ChessFigure[][] board;
-
 
     public GameBoard() {
         board = new ChessFigure[8][8];

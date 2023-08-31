@@ -1,8 +1,4 @@
-public
-    class Rook
-    extends ChessFigure
-    implements FigureMove {
-
+public class Rook extends ChessFigure implements FigureMove {
 
     public Rook(String color, int x, int y) {
         super(color, x, y);

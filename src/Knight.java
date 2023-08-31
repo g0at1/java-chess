@@ -1,8 +1,4 @@
-public
-    class Knight
-    extends ChessFigure
-    implements FigureMove {
-
+public class Knight extends ChessFigure implements FigureMove {
 
     public Knight(String color, int x, int y) {
         super(color, x, y);

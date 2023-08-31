@@ -1,6 +1,4 @@
-public abstract
-    class ChessFigure
-    implements FigureMove {
+public abstract class ChessFigure implements FigureMove {
 
     private String color;
     private int x, y;

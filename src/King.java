@@ -1,7 +1,4 @@
-public
-    class King
-    extends ChessFigure
-    implements FigureMove {
+public class King extends ChessFigure implements FigureMove {
 
     public King(String color, int x, int y) {
         super(color, x, y);
