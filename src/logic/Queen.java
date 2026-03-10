@@ -1,3 +1,5 @@
+package logic;
+
 public class Queen extends ChessFigure implements FigureMove {
 
     public Queen(String color, int x, int y) {

@@ -1,10 +1,15 @@
-public abstract class ChessFigure implements FigureMove {
+package logic;
+
+import java.io.Serializable;
+
+public abstract class ChessFigure implements FigureMove, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private String color;
     private int x, y;
 
     ChessFigure[][] board = GameBoard.getBoard();
-
 
     ChessFigure(String color, int x, int y) {
         this.color = color;
@@ -17,5 +22,4 @@ public abstract class ChessFigure implements FigureMove {
     }
 
     public abstract String getSymbol();
-
 }

@@ -1,3 +1,5 @@
+package logic;
+
 public class Bishop extends ChessFigure implements FigureMove {
 
     public Bishop(String color, int x, int y) {

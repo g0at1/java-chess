@@ -1,3 +1,5 @@
+package logic;
+
 public class GameBoard {
 
     private static ChessFigure[][] board;
@@ -5,7 +7,6 @@ public class GameBoard {
     public GameBoard() {
         board = new ChessFigure[8][8];
         initBoard();
-        printBoard();
     }
 
     private void initBoard() {
@@ -82,6 +83,10 @@ public class GameBoard {
 
     public static ChessFigure[][] getBoard() {
         return board;
+    }
+
+    public static void setBoard(ChessFigure[][] newBoard) {
+        board = newBoard;
     }
 
 }

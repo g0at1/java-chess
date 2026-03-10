@@ -1,3 +1,5 @@
+package logic;
+
 public class Pawn extends ChessFigure implements FigureMove {
     public Pawn(String color, int x, int y) {
         super(color, x, y);
